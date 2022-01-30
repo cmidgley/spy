@@ -1,5 +1,5 @@
 {
-  "name": "@netatwork/spy",
+  "name": "@cmidgley/spy",
   "version": "1.1.0",
   "description": "Mock the dependencies in unit tests with this proxy-based spy implementation",
   "main": "dist/index.js",

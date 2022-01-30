@@ -1,3 +1,10 @@
+# @cmidgley/spy fork of @netawork/spy
+
+This fork has the following changes:
+
+1) Project name change to @cmidgley/spy
+2) Support for embedded systems use with [Moddable](http://moddable.com) by adding a `manifest.json` file.
+
 # @netatwork/spy
 
 [![npm version](https://img.shields.io/npm/v/@netatwork/spy)](https://www.npmjs.com/package/@netatwork/spy)
