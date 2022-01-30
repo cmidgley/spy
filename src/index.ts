@@ -1,2 +1,4 @@
-export * from './spy';
-export * from './assert';
+import { Spy } from './spy';
+import { Assert, AssertionFactory } from './assert';
+
+export { Spy, Assert, AssertionFactory };
