@@ -1,7 +1,7 @@
 {
 	"modules": {
-		"@cmidgley/spy": ["src/spy/index"],
-		"@cmidgley/spy/assert": ["dist/esm/index.d"],
-		"@cmidgley/spy/spy": ["src/spy/spy"]
+		"@cmidgley/spy": ["src/index"],
+		"@cmidgley/spy/assert": ["src/assert"],
+		"@cmidgley/spy/spy": ["src/spy"]
 	}
 }
