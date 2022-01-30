@@ -8,7 +8,7 @@ export declare type MethodNames<TObject> = {
     [Method in keyof TObject]: TObject[Method] extends Function ? Method : never;
 }[keyof TObject];
 export declare type PickOnlyMethods<TObject> = {
-    [Method in MethodNames<TObject>]: TObject[Method];
+    [Method in MethodNames<TObject>]: (...args: unknown[]) => unknown;
 };
 export declare type MethodParameters<TObject, TMethod extends MethodNames<TObject>> = Parameters<PickOnlyMethods<TObject>[TMethod]>;
 export declare type Indexable<TObject> = {
@@ -22,7 +22,7 @@ export declare class Spy<TObject extends object> {
     callRecords: Map<MethodNames<TObject>, Parameters<PickOnlyMethods<TObject>[MethodNames<TObject>]>[]>;
     readonly proxy: TObject;
     constructor(originalObject: TObject, callThrough?: boolean, mocks?: Partial<TObject>);
-    callThrough<TMethod extends MethodNames<TObject>>(propertyKey: TMethod, ...args: MethodParameters<TObject, TMethod>): ReturnType<TObject[TMethod]>;
+    callThrough<TMethod extends MethodNames<TObject>>(propertyKey: TMethod, ...args: MethodParameters<TObject, TMethod>): ReturnType<(...fargs: unknown[]) => unknown>;
     clearCallRecords<TMethod extends MethodNames<TObject>>(method?: TMethod): void;
     getCallCount(methodName: MethodNames<TObject>): number;
     getArguments<TMethod extends MethodNames<TObject>>(methodName: TMethod): MethodParameters<TObject, TMethod>[] | undefined;

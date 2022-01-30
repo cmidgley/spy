@@ -14,7 +14,7 @@ let assert: Assert = null!;
 
 const noop: () => void = () => { /* noop */ };
 export type MethodNames<TObject> = { [Method in keyof TObject]: TObject[Method] extends Function ? Method : never }[keyof TObject];
-export type PickOnlyMethods<TObject> = { [Method in MethodNames<TObject>]: TObject[Method] };
+export type PickOnlyMethods<TObject> = { [Method in MethodNames<TObject>]:  (...args: unknown[]) => unknown }; //TObject[Method] };
 export type MethodParameters<TObject, TMethod extends MethodNames<TObject>> = Parameters<PickOnlyMethods<TObject>[TMethod]>;
 export type Indexable<TObject> = { [key in keyof TObject]: TObject[key] };
 export type ArgumentTransformer<TObject, TMethod extends MethodNames<TObject>> = (
@@ -96,7 +96,7 @@ export class Spy<TObject extends object> {
   public callThrough<TMethod extends MethodNames<TObject>>(
     propertyKey: TMethod,
     ...args: MethodParameters<TObject, TMethod>
-  ): ReturnType<TObject[TMethod]> {
+  ): ReturnType<  (...fargs: unknown[]) => unknown > { // TObject[TMethod]> {
     const original = this.originalObject;
     return (original[propertyKey] as Function).apply(original, args);
   }
