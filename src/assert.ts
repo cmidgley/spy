@@ -9,9 +9,6 @@ export class AssertionFactory {
   public static configure(assert: Assert): Assert {
     return this._assert = assert;
   }
-  public static async configureDefault(): Promise<Assert> {
-    return this.configure((await import('chai')).assert);
-  }
   public static get assert(): Assert {
     const assert = this._assert;
     if (assert !== null) { return assert; }

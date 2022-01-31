@@ -6,7 +6,6 @@ export interface Assert {
 export declare class AssertionFactory {
     private static _assert;
     static configure(assert: Assert): Assert;
-    static configureDefault(): Promise<Assert>;
     static get assert(): Assert;
 }
 //# sourceMappingURL=assert.d.ts.map

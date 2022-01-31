@@ -3,9 +3,6 @@ export class AssertionFactory {
     static configure(assert) {
         return this._assert = assert;
     }
-    static async configureDefault() {
-        return this.configure((await import('chai')).assert);
-    }
     static get assert() {
         const assert = this._assert;
         if (assert !== null) {
