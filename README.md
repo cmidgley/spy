@@ -8,6 +8,8 @@ This fork has the following changes:
 4) Adjusted types in `spy.ts` to correct TSC compilation errors when using ESM.
 5) Removed 'chai' for default asserts, as it causes TypeScript compilation errors when 'chai' isn't available.
 
+README below is unchanged from original.  Aside from switching to ESM, the only other breaking change is no longer having a `chai` default for assertions.
+
 # @netatwork/spy
 
 [![npm version](https://img.shields.io/npm/v/@netatwork/spy)](https://www.npmjs.com/package/@netatwork/spy)
