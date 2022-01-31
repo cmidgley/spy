@@ -86,7 +86,7 @@ export class Spy<TObject extends object> {
           }
           return callThrough
             ? spy.createCallRecorder(propertyKey as TMethod, original)
-            : spy.createCallRecorder(propertyKey as TMethod, noop as TObject[TMethod]);
+            : spy.createCallRecorder(propertyKey as TMethod, noop as unknown as TObject[TMethod]);  // todo: fix unknown cast
         }
         return mock ?? (callThrough ? original : undefined);
       }
@@ -98,7 +98,7 @@ export class Spy<TObject extends object> {
     ...args: MethodParameters<TObject, TMethod>
   ): ReturnType<  (...fargs: unknown[]) => unknown > { // TObject[TMethod]> {
     const original = this.originalObject;
-    return (original[propertyKey] as Function).apply(original, args);
+    return (original[propertyKey] as unknown as Function).apply(original, args);  // todo: fix unknown cast
   }
 
   /** @internal */
@@ -110,7 +110,7 @@ export class Spy<TObject extends object> {
     const spy = this;
     return function (this: TObject, ...args: MethodParameters<TObject, TMethod>): TObject[TMethod] {
       spy.setCallRecord(propertyKey, args);
-      return (trapped as Function).apply(this, args);
+      return (trapped as unknown as Function).apply(this, args);  // todo: fix unknown cast
     };
   }
 
