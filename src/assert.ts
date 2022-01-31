@@ -11,12 +11,11 @@ export class AssertionFactory {
   }
 
   public static get assert(): Assert {
-    const assert = this._assert;
-    if (assert == null) 
+    if (this._assert == null) 
       AssertionFactory.configureDefault();
-    if (assert == null)
+    if (this._assert == null)
       throw new Error('Assertion is not configured for Spy.');
-    return assert;
+    return this._assert;
   }
 
   public static configureDefault() {
