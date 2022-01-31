@@ -1,10 +1,7 @@
 {
 	"modules": {
-		"@cmidgley/dispy": ["dist/index"],
-		"@cmidgley/dispy.d": ["dist/types/index.d"],
-		"@cmidgley/assert": ["dist/assert"],
-		"@cmidgley/assert.d": ["dist/types/assert.d"],
-		"@cmidgley/spy": ["dist/spy"],
-		"@cmidgley/spy.d": ["dist/types/spy.d"]
+		"@cmidgley/dispy": ["src/index"],
+		"@cmidgley/assert": ["src/assert"],
+		"@cmidgley/spy": ["src/spy"]
 	}
 }
