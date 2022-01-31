@@ -2,11 +2,11 @@
 
 This fork has the following changes:
 
-1) Project name change to @cmidgley/spy
+1) Project name change to @cmidgley/dispy (Moddable has limitation where package name and separate class can not use the same name)
 2) Support for embedded systems use with [Moddable](http://moddable.com) by adding a `manifest.json` file.
-3) Removed `dist` from `.gitignore` until set up as it's own NPM package / merged into origin.
-4) Now using ESM (was CommonJS)
-5) Adjusted types in `spy.ts` to correct TSC compilation errors when using ESM.
+3) Switch to ESM (was CommonJS)
+4) Adjusted types in `spy.ts` to correct TSC compilation errors when using ESM.
+5) Removed 'chai' for default asserts, as it causes TypeScript compilation errors when 'chai' isn't available.
 
 # @netatwork/spy
 
