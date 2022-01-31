@@ -2,8 +2,7 @@
   "name": "@cmidgley/dispy",
   "version": "1.1.0",
   "description": "Mock the dependencies in unit tests with this proxy-based spy implementation",
-  "main": "dist/index.js",
-  "typings": "dist/types/index",
+  "main": "src/index.ts",
   "type": "module",
   "scripts": {
     "prebuild": "rimraf dist & eslint . --ext .ts --cache",
