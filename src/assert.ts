@@ -9,9 +9,37 @@ export class AssertionFactory {
   public static configure(assert: Assert): Assert {
     return this._assert = assert;
   }
+  
   public static get assert(): Assert {
     const assert = this._assert;
     if (assert !== null) { return assert; }
     throw new Error('Assertion is not configured for Spy.');
+  }
+
+  public static configureDefault() {
+    const assert: Assert = {
+			strictEqual(actual: unknown, expected: unknown, message: string) {
+				try {
+					expect(actual).toBe(expected);
+				} catch (err) {
+					throw Error(`${message}: ${<string>err}`);
+				}
+			},
+			deepStrictEqual(actual: unknown, expected: unknown, message: string) {
+				try {
+					expect(actual).toEqual(expected);
+				} catch (err) {
+					throw Error(`${message}: ${<string>err}`);
+				}
+			},
+			isAbove(actual: number, expected: number, message: string) {
+				try {
+					expect(actual).toBeGreaterThan(expected);
+				} catch (err) {
+					throw Error(`${message}: ${<string>err}`);
+				}
+			},
+		};
+		AssertionFactory.configure(assert);
   }
 }
