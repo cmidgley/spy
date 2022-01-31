@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { AssertionError, strict } from 'assert';
 import { assert } from 'chai';
+import { timingSafeEqual } from 'crypto';
 import { Assert, AssertionFactory } from '../src/assert';
 import { MethodNames, Spy } from '../src/spy';
 
@@ -50,7 +51,7 @@ describe('spy', function () {
 
   async function arrange(defaultAssert: boolean) {
     if (defaultAssert) {
-      await AssertionFactory.configureDefault();
+        AssertionFactory.configure((await import('chai')).assert);
     } else {
       AssertionFactory.configure(altAssert);
     }
