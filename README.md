@@ -5,6 +5,8 @@ This fork has the following changes:
 1) Project name change to @cmidgley/spy
 2) Support for embedded systems use with [Moddable](http://moddable.com) by adding a `manifest.json` file.
 3) Removed `dist` from `.gitignore` until set up as it's own NPM package / merged into origin.
+4) Now using ESM (was CommonJS)
+5) Adjusted types in `spy.ts` to correct TSC compilation errors when using ESM.
 
 # @netatwork/spy
 
