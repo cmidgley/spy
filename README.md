@@ -6,7 +6,7 @@ This fork has the following changes:
 2) Support for embedded systems use with [Moddable](http://moddable.com) by adding a `manifest.json` file.
 3) Switch to ESM (was CommonJS)
 4) Adjusted types in `spy.ts` to correct TSC compilation errors when using ESM.
-5) Changed default asserts to using `jest`.
+5) Changed default asserts to using `jest`, and removed need to call `AssertionFactory.configureDefault`.
 
 README below is unchanged from original.  Aside from switching to ESM, the only other breaking change is no longer having a `chai` default for assertions.
 
