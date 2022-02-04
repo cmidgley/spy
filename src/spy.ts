@@ -22,7 +22,10 @@ export type ArgumentTransformer<TObject, TMethod extends MethodNames<TObject>> =
 ) => unknown;
 const identity: ArgumentTransformer<unknown, never> = (_) => _;
 
+type SpyTracker = { spy: Spy<object>, instance: object };
+
 export class Spy<TObject extends object> {
+  private static tracker: SpyTracker[] = [];
 
   public static create<TObject extends object, TMethod extends MethodNames<TObject>>(objectToMock: TObject, methodName: TMethod, callThrough: boolean, mockImplementation?: TObject[TMethod]): Spy<TObject>;
   public static create<TObject extends object>(objectToMock: TObject, callThrough: boolean, mockImplementation?: Partial<TObject>): Spy<TObject>;
@@ -62,7 +65,19 @@ export class Spy<TObject extends object> {
     }
 
     assert ??= AssertionFactory.assert;
-    return new Spy<TObject>(objectToMock, callThrough, mockImplementation);
+    const spy = new Spy<TObject>(objectToMock, callThrough, mockImplementation);
+    Spy.tracker.push({ instance: spy.proxy, spy: <Spy<object>> <unknown> spy });
+    return spy;
+  }
+
+  public static getSpy<TObject extends object>(spiedObject: TObject): Spy<TObject> | undefined {
+    const spy = Spy.tracker.find((e) => e.instance === spiedObject);
+    if (spy) return <Spy<TObject>> <unknown> spy.spy;
+    return undefined;
+  }
+
+  public static clearTracking() {
+    Spy.tracker = [];
   }
 
   public callRecords = new Map<MethodNames<TObject>, MethodParameters<TObject, MethodNames<TObject>>[]>();

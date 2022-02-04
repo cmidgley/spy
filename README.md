@@ -8,6 +8,13 @@ This fork has the following changes:
 4) Adjusted types in `spy.ts` to correct TSC compilation errors when using ESM.
 5) Changed default asserts to using `jest`, and removed need to call `AssertionFactory.configureDefault`.
 6) Since we are not making an NPM package (at this time), added `dist` to `.gitignore` to save compiled version.
+7) Added tracking of instantiated spies and a `getSpy` method to locate a spy
+   based on an instantiated proxy object.  This is useful for when dependency
+   injection is being used for the creation of the mock, and the original spy
+   needs to be located.  For long running tests, the `resetTracking` method can
+   be used to clear the tracking table (all objects are cleared, so this should
+   only be done when all running tests are over and before the next set of tests
+   begin).a
 
 README below is unchanged from original.  Aside from switching to ESM, the only other breaking change is no longer having a `chai` default for assertions.
 

@@ -10,6 +10,7 @@ const noop = () => { };
 const identity = (_) => _;
 export class Spy {
     originalObject;
+    static tracker = [];
     static create(objectToMock, ...args) {
         let methodName;
         let callThrough;
@@ -48,7 +49,18 @@ export class Spy {
                 throw new Error('Unexpected number of arguments');
         }
         assert ??= AssertionFactory.assert;
-        return new Spy(objectToMock, callThrough, mockImplementation);
+        const spy = new Spy(objectToMock, callThrough, mockImplementation);
+        Spy.tracker.push({ instance: spy.proxy, spy: spy });
+        return spy;
+    }
+    static getSpy(spiedObject) {
+        const spy = Spy.tracker.find((e) => e.instance === spiedObject);
+        if (spy)
+            return spy.spy;
+        return undefined;
+    }
+    static clearTracking() {
+        Spy.tracker = [];
     }
     callRecords = new Map();
     proxy;

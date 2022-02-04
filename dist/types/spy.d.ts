@@ -17,8 +17,11 @@ export declare type Indexable<TObject> = {
 export declare type ArgumentTransformer<TObject, TMethod extends MethodNames<TObject>> = (args: MethodParameters<TObject, TMethod> | MethodParameters<TObject, TMethod>[] | undefined) => unknown;
 export declare class Spy<TObject extends object> {
     private readonly originalObject;
+    private static tracker;
     static create<TObject extends object, TMethod extends MethodNames<TObject>>(objectToMock: TObject, methodName: TMethod, callThrough: boolean, mockImplementation?: TObject[TMethod]): Spy<TObject>;
     static create<TObject extends object>(objectToMock: TObject, callThrough: boolean, mockImplementation?: Partial<TObject>): Spy<TObject>;
+    static getSpy<TObject extends object>(spiedObject: TObject): Spy<TObject> | undefined;
+    static clearTracking(): void;
     callRecords: Map<MethodNames<TObject>, Parameters<PickOnlyMethods<TObject>[MethodNames<TObject>]>[]>;
     readonly proxy: TObject;
     constructor(originalObject: TObject, callThrough?: boolean, mocks?: Partial<TObject>);
