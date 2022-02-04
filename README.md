@@ -7,6 +7,7 @@ This fork has the following changes:
 3) Switch to ESM (was CommonJS)
 4) Adjusted types in `spy.ts` to correct TSC compilation errors when using ESM.
 5) Changed default asserts to using `jest`, and removed need to call `AssertionFactory.configureDefault`.
+6) Since we are not making an NPM package (at this time), added `dist` to `.gitignore` to save compiled version.
 
 README below is unchanged from original.  Aside from switching to ESM, the only other breaking change is no longer having a `chai` default for assertions.
 
